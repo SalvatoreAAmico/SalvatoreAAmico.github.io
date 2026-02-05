@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looker Dashboard - Salvatore A Amico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #fafaf8;
+            --color-text: #1a1a1a;
+            --color-accent: #4285f4;
+            --color-accent-dark: #3367d6;
+            --color-secondary: #2a4d57;
+            --color-muted: #6b6b6b;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Work Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .back-nav {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .back-nav a {
+            font-family: var(--font-body);
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-nav a:hover { color: var(--color-text); }
+        .back-nav a::before { content: '\2190\00a0'; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+            padding: 4rem 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .hero-banner h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dashboard-section {
+            padding: 4rem 0;
+        }
+
+        .dashboard-section h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-section p {
+            color: var(--color-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .dashboard-frame {
+            width: 100%;
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .dashboard-frame-header {
+            background: #f5f5f3;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot.red { background: #ff5f57; }
+        .dot.yellow { background: #febc2e; }
+        .dot.green { background: #28c840; }
+
+        .dashboard-content {
+            padding: 2rem;
+            min-height: 500px;
+        }
+
+        .looker-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: rgba(66, 133, 244, 0.04);
+            border: 1px solid rgba(66, 133, 244, 0.12);
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toolbar-tab {
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 4px;
+            color: var(--color-muted);
+            cursor: default;
+        }
+
+        .toolbar-tab.active {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .toolbar-right {
+            font-size: 0.8rem;
+            color: var(--color-muted);
+        }
+
+        .metrics-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-tile {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            border-radius: 6px;
+            padding: 1.25rem;
+            text-align: center;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .metric-tile .value {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        .metric-tile .label {
+            font-size: 0.75rem;
+            color: var(--color-muted);
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-tile .spark {
+            margin-top: 0.5rem;
+        }
+
+        .metric-tile .spark svg {
+            width: 100%;
+            height: 30px;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .widget {
+            background: #f9f9f7;
+            border: 1px solid rgba(26, 26, 26, 0.06);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .widget h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .stacked-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .stacked-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stacked-label {
+            width: 60px;
+            font-size: 0.8rem;
+            color: var(--color-muted);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .stacked-track {
+            flex: 1;
+            height: 28px;
+            display: flex;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .stacked-seg {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .seg-blue { background: #4285f4; }
+        .seg-green { background: #34a853; }
+        .seg-yellow { background: #fbbc05; }
+        .seg-red { background: #ea4335; }
+
+        .stacked-legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stacked-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--color-muted);
+        }
+
+        .stacked-legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        .funnel-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 1rem 0;
+        }
+
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .funnel-bar {
+            height: 36px;
+            background: linear-gradient(90deg, #4285f4, #3367d6);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: width 0.5s ease;
+        }
+
+        .funnel-label {
+            width: 100px;
+            font-size: 0.8rem;
+            color: var(--color-muted);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .funnel-rate {
+            width: 50px;
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .widget-full {
+            grid-column: 1 / -1;
+        }
+
+        .pipeline-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pipeline-table th, .pipeline-table td {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .pipeline-table th {
+            font-weight: 600;
+            color: var(--color-secondary);
+            background: rgba(66, 133, 244, 0.04);
+        }
+
+        .pipeline-table td { color: var(--color-muted); }
+
+        .stage-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .stage-badge.prospect { background: #e8f0fe; color: #1967d2; }
+        .stage-badge.qualified { background: #e6f4ea; color: #137333; }
+        .stage-badge.proposal { background: #fef7e0; color: #b06000; }
+        .stage-badge.negotiation { background: #fce8e6; color: #c5221f; }
+        .stage-badge.closed { background: #e8f5e9; color: #1b5e20; }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(26, 26, 26, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--color-accent);
+        }
+
+        .details-section {
+            padding: 0 0 4rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            padding: 2rem;
+            border-radius: 6px;
+        }
+
+        .detail-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .detail-card p, .detail-card li {
+            color: var(--color-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .detail-card ul { list-style: none; padding: 0; }
+
+        .detail-card ul li::before {
+            content: '\2022';
+            color: var(--color-accent);
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            text-align: center;
+            color: var(--color-muted);
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+            .grid-2col { grid-template-columns: 1fr; }
+            .details-grid { grid-template-columns: 1fr; }
+            .funnel-bar { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html">Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="hero-banner">
+        <div class="container">
+            <h1>Looker &mdash; Operations Pipeline Dashboard</h1>
+            <p>End-to-end pipeline visibility with LookML-modeled metrics for operational efficiency tracking</p>
+        </div>
+    </div>
+
+    <section class="dashboard-section">
+        <div class="container">
+            <h2>Dashboard Overview</h2>
+            <p>This Looker dashboard delivers real-time operational pipeline analytics built on a governed LookML data model. It provides leadership with self-service access to pipeline health, conversion rates, and team performance metrics, all backed by a single source of truth.</p>
+
+            <div class="dashboard-frame">
+                <div class="dashboard-frame-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="dashboard-content">
+                    <div class="looker-toolbar">
+                        <div class="toolbar-left">
+                            <span class="toolbar-tab active">Overview</span>
+                            <span class="toolbar-tab">By Team</span>
+                            <span class="toolbar-tab">By Region</span>
+                            <span class="toolbar-tab">Trends</span>
+                        </div>
+                        <div class="toolbar-right">Last refreshed: 12 min ago</div>
+                    </div>
+
+                    <div class="metrics-strip">
+                        <div class="metric-tile">
+                            <div class="value">$12.4M</div>
+                            <div class="label">Pipeline Value</div>
+                            <div class="spark">
+                                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                                    <polyline points="0,25 15,20 30,22 45,15 60,18 75,10 100,5" fill="none" stroke="#4285f4" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-tile">
+                            <div class="value">342</div>
+                            <div class="label">Active Deals</div>
+                            <div class="spark">
+                                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                                    <polyline points="0,20 15,18 30,22 45,16 60,14 75,12 100,8" fill="none" stroke="#34a853" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-tile">
+                            <div class="value">28.4%</div>
+                            <div class="label">Win Rate</div>
+                            <div class="spark">
+                                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                                    <polyline points="0,22 15,20 30,18 45,22 60,16 75,14 100,12" fill="none" stroke="#fbbc05" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-tile">
+                            <div class="value">34 days</div>
+                            <div class="label">Avg Cycle Time</div>
+                            <div class="spark">
+                                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                                    <polyline points="0,10 15,12 30,14 45,12 60,15 75,13 100,16" fill="none" stroke="#ea4335" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-tile">
+                            <div class="value">$36.2K</div>
+                            <div class="label">Avg Deal Size</div>
+                            <div class="spark">
+                                <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                                    <polyline points="0,24 15,22 30,20 45,18 60,15 75,12 100,8" fill="none" stroke="#4285f4" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col">
+                        <div class="widget">
+                            <h3>Pipeline by Stage (Quarterly)</h3>
+                            <div class="stacked-bars">
+                                <div class="stacked-row">
+                                    <span class="stacked-label">Q1</span>
+                                    <div class="stacked-track">
+                                        <div class="stacked-seg seg-blue" style="width: 35%;"></div>
+                                        <div class="stacked-seg seg-green" style="width: 25%;"></div>
+                                        <div class="stacked-seg seg-yellow" style="width: 22%;"></div>
+                                        <div class="stacked-seg seg-red" style="width: 18%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stacked-row">
+                                    <span class="stacked-label">Q2</span>
+                                    <div class="stacked-track">
+                                        <div class="stacked-seg seg-blue" style="width: 30%;"></div>
+                                        <div class="stacked-seg seg-green" style="width: 28%;"></div>
+                                        <div class="stacked-seg seg-yellow" style="width: 25%;"></div>
+                                        <div class="stacked-seg seg-red" style="width: 17%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stacked-row">
+                                    <span class="stacked-label">Q3</span>
+                                    <div class="stacked-track">
+                                        <div class="stacked-seg seg-blue" style="width: 28%;"></div>
+                                        <div class="stacked-seg seg-green" style="width: 30%;"></div>
+                                        <div class="stacked-seg seg-yellow" style="width: 24%;"></div>
+                                        <div class="stacked-seg seg-red" style="width: 18%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stacked-row">
+                                    <span class="stacked-label">Q4</span>
+                                    <div class="stacked-track">
+                                        <div class="stacked-seg seg-blue" style="width: 25%;"></div>
+                                        <div class="stacked-seg seg-green" style="width: 32%;"></div>
+                                        <div class="stacked-seg seg-yellow" style="width: 28%;"></div>
+                                        <div class="stacked-seg seg-red" style="width: 15%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stacked-legend">
+                                <div class="stacked-legend-item"><div class="stacked-legend-dot seg-blue"></div> Prospect</div>
+                                <div class="stacked-legend-item"><div class="stacked-legend-dot seg-green"></div> Qualified</div>
+                                <div class="stacked-legend-item"><div class="stacked-legend-dot seg-yellow"></div> Proposal</div>
+                                <div class="stacked-legend-item"><div class="stacked-legend-dot seg-red"></div> Negotiation</div>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <h3>Conversion Funnel</h3>
+                            <div class="funnel-chart">
+                                <div class="funnel-step">
+                                    <span class="funnel-label">Leads</span>
+                                    <div class="funnel-bar" style="width: 100%;">2,140</div>
+                                    <span class="funnel-rate"></span>
+                                </div>
+                                <div class="funnel-step">
+                                    <span class="funnel-label">Qualified</span>
+                                    <div class="funnel-bar" style="width: 68%;">1,455</div>
+                                    <span class="funnel-rate">68%</span>
+                                </div>
+                                <div class="funnel-step">
+                                    <span class="funnel-label">Proposal</span>
+                                    <div class="funnel-bar" style="width: 42%;">899</div>
+                                    <span class="funnel-rate">62%</span>
+                                </div>
+                                <div class="funnel-step">
+                                    <span class="funnel-label">Negotiation</span>
+                                    <div class="funnel-bar" style="width: 28%;">599</div>
+                                    <span class="funnel-rate">67%</span>
+                                </div>
+                                <div class="funnel-step">
+                                    <span class="funnel-label">Closed Won</span>
+                                    <div class="funnel-bar" style="width: 18%;">342</div>
+                                    <span class="funnel-rate">57%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-full pipeline-table">
+                        <h3>Top Pipeline Opportunities</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Opportunity</th>
+                                    <th>Account</th>
+                                    <th>Value</th>
+                                    <th>Stage</th>
+                                    <th>Probability</th>
+                                    <th>Close Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Enterprise Platform License</td>
+                                    <td>Acme Corp</td>
+                                    <td>$485,000</td>
+                                    <td><span class="stage-badge negotiation">Negotiation</span></td>
+                                    <td><div class="progress-bar"><div class="progress-bar-fill" style="width:75%;"></div></div></td>
+                                    <td>Mar 15, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td>Cloud Migration Services</td>
+                                    <td>TechStart Inc</td>
+                                    <td>$312,000</td>
+                                    <td><span class="stage-badge proposal">Proposal</span></td>
+                                    <td><div class="progress-bar"><div class="progress-bar-fill" style="width:50%;"></div></div></td>
+                                    <td>Apr 2, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td>Data Analytics Suite</td>
+                                    <td>Global Retail Co</td>
+                                    <td>$278,500</td>
+                                    <td><span class="stage-badge qualified">Qualified</span></td>
+                                    <td><div class="progress-bar"><div class="progress-bar-fill" style="width:35%;"></div></div></td>
+                                    <td>May 10, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td>Annual Support Renewal</td>
+                                    <td>MedHealth Systems</td>
+                                    <td>$198,000</td>
+                                    <td><span class="stage-badge closed">Closed Won</span></td>
+                                    <td><div class="progress-bar"><div class="progress-bar-fill" style="width:100%;"></div></div></td>
+                                    <td>Feb 28, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td>API Integration Package</td>
+                                    <td>FinServ Partners</td>
+                                    <td>$156,000</td>
+                                    <td><span class="stage-badge prospect">Prospect</span></td>
+                                    <td><div class="progress-bar"><div class="progress-bar-fill" style="width:15%;"></div></div></td>
+                                    <td>Jun 30, 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="container">
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3>Data Sources</h3>
+                    <ul>
+                        <li>BigQuery data warehouse</li>
+                        <li>Salesforce CRM (via Fivetran connector)</li>
+                        <li>HubSpot marketing automation</li>
+                        <li>Internal PostgreSQL operations database</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>LookML model with reusable dimensions and measures</li>
+                        <li>Derived tables for pipeline stage duration</li>
+                        <li>User-level access controls by team</li>
+                        <li>Scheduled PDF delivery to leadership</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>Tools & Techniques</h3>
+                    <p>Looker (Google Cloud), LookML, BigQuery SQL, Fivetran ETL, derived tables, persistent derived tables (PDTs), liquid templating for dynamic filters.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Business Impact</h3>
+                    <p>Established a single source of truth for pipeline reporting, eliminating conflicting spreadsheet-based forecasts. Reduced weekly reporting effort by 6 hours and improved forecast accuracy by 22%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Salvatore A Amico. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

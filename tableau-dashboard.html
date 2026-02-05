@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau Dashboard - Salvatore A Amico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #fafaf8;
+            --color-text: #1a1a1a;
+            --color-accent: #e97627;
+            --color-accent-dark: #c6591c;
+            --color-secondary: #2a4d57;
+            --color-muted: #6b6b6b;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Work Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .back-nav {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .back-nav a {
+            font-family: var(--font-body);
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-nav a:hover { color: var(--color-text); }
+        .back-nav a::before { content: '\2190\00a0'; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #e97627 0%, #c6591c 100%);
+            padding: 4rem 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .hero-banner h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dashboard-section {
+            padding: 4rem 0;
+        }
+
+        .dashboard-section h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-section p {
+            color: var(--color-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .dashboard-frame {
+            width: 100%;
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .dashboard-frame-header {
+            background: #f5f5f3;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot.red { background: #ff5f57; }
+        .dot.yellow { background: #febc2e; }
+        .dot.green { background: #28c840; }
+
+        .dashboard-content {
+            padding: 2rem;
+            min-height: 500px;
+        }
+
+        .map-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #eef4f7 0%, #dde8ec 100%);
+            border: 1px solid rgba(42, 77, 87, 0.1);
+            border-radius: 6px;
+            min-height: 320px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 25% 35%, rgba(233, 118, 39, 0.6) 0%, transparent 8%),
+                radial-gradient(circle at 35% 55%, rgba(233, 118, 39, 0.8) 0%, transparent 6%),
+                radial-gradient(circle at 60% 30%, rgba(233, 118, 39, 0.4) 0%, transparent 10%),
+                radial-gradient(circle at 70% 50%, rgba(233, 118, 39, 0.7) 0%, transparent 7%),
+                radial-gradient(circle at 45% 65%, rgba(233, 118, 39, 0.3) 0%, transparent 12%),
+                radial-gradient(circle at 80% 40%, rgba(233, 118, 39, 0.5) 0%, transparent 5%),
+                radial-gradient(circle at 20% 60%, rgba(42, 77, 87, 0.4) 0%, transparent 6%),
+                radial-gradient(circle at 55% 45%, rgba(42, 77, 87, 0.3) 0%, transparent 9%);
+        }
+
+        .map-title {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            z-index: 1;
+        }
+
+        .filter-panel {
+            background: #f9f9f7;
+            border: 1px solid rgba(26, 26, 26, 0.06);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .filter-panel h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid rgba(26, 26, 26, 0.15);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-text);
+            background: white;
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .filter-chip {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            border-radius: 3px;
+            border: 1px solid rgba(233, 118, 39, 0.3);
+            color: var(--color-accent-dark);
+            background: rgba(233, 118, 39, 0.08);
+            font-weight: 500;
+        }
+
+        .filter-chip.active {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .charts-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .widget {
+            background: #f9f9f7;
+            border: 1px solid rgba(26, 26, 26, 0.06);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .widget h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hbar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .hbar-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hbar-label {
+            width: 100px;
+            font-size: 0.8rem;
+            color: var(--color-muted);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .hbar-track {
+            flex: 1;
+            height: 22px;
+            background: rgba(26, 26, 26, 0.04);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .hbar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #e97627, #c6591c);
+        }
+
+        .hbar-value {
+            width: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .area-chart {
+            height: 200px;
+            position: relative;
+        }
+
+        .area-chart svg { width: 100%; height: 100%; }
+
+        .details-section {
+            padding: 0 0 4rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            padding: 2rem;
+            border-radius: 6px;
+        }
+
+        .detail-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .detail-card p, .detail-card li {
+            color: var(--color-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .detail-card ul { list-style: none; padding: 0; }
+
+        .detail-card ul li::before {
+            content: '\2022';
+            color: var(--color-accent);
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            text-align: center;
+            color: var(--color-muted);
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .map-section { grid-template-columns: 1fr; }
+            .charts-row { grid-template-columns: 1fr; }
+            .details-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html">Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="hero-banner">
+        <div class="container">
+            <h1>Tableau &mdash; Customer Analytics Explorer</h1>
+            <p>Interactive geographic and demographic analysis of customer behavior and market penetration</p>
+        </div>
+    </div>
+
+    <section class="dashboard-section">
+        <div class="container">
+            <h2>Dashboard Overview</h2>
+            <p>This Tableau dashboard provides an interactive exploration of customer distribution, segmentation, and lifetime value across geographic regions. Users can filter by time period, customer segment, and product category to uncover patterns in customer acquisition and retention.</p>
+
+            <div class="dashboard-frame">
+                <div class="dashboard-frame-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="dashboard-content">
+                    <div class="map-section">
+                        <div class="map-placeholder">
+                            <div class="map-title">Customer Distribution by Region</div>
+                        </div>
+                        <div class="filter-panel">
+                            <h3>Filters</h3>
+                            <div class="filter-group">
+                                <label>Time Period</label>
+                                <select class="filter-select">
+                                    <option>Last 12 Months</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Segment</label>
+                                <div class="filter-chips">
+                                    <span class="filter-chip active">All</span>
+                                    <span class="filter-chip">Enterprise</span>
+                                    <span class="filter-chip">Mid-Market</span>
+                                    <span class="filter-chip">SMB</span>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label>Product Line</label>
+                                <select class="filter-select">
+                                    <option>All Products</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Customer Status</label>
+                                <div class="filter-chips">
+                                    <span class="filter-chip active">Active</span>
+                                    <span class="filter-chip">Churned</span>
+                                    <span class="filter-chip">New</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-row">
+                        <div class="widget">
+                            <h3>Customer Lifetime Value by Segment</h3>
+                            <div class="hbar-chart">
+                                <div class="hbar-row">
+                                    <span class="hbar-label">Enterprise</span>
+                                    <div class="hbar-track"><div class="hbar-fill" style="width: 92%;"></div></div>
+                                    <span class="hbar-value">$48.2K</span>
+                                </div>
+                                <div class="hbar-row">
+                                    <span class="hbar-label">Mid-Market</span>
+                                    <div class="hbar-track"><div class="hbar-fill" style="width: 64%;"></div></div>
+                                    <span class="hbar-value">$23.7K</span>
+                                </div>
+                                <div class="hbar-row">
+                                    <span class="hbar-label">SMB</span>
+                                    <div class="hbar-track"><div class="hbar-fill" style="width: 38%;"></div></div>
+                                    <span class="hbar-value">$8.4K</span>
+                                </div>
+                                <div class="hbar-row">
+                                    <span class="hbar-label">Startup</span>
+                                    <div class="hbar-track"><div class="hbar-fill" style="width: 22%;"></div></div>
+                                    <span class="hbar-value">$3.1K</span>
+                                </div>
+                                <div class="hbar-row">
+                                    <span class="hbar-label">Government</span>
+                                    <div class="hbar-track"><div class="hbar-fill" style="width: 55%;"></div></div>
+                                    <span class="hbar-value">$19.8K</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <h3>Monthly Customer Acquisition</h3>
+                            <div class="area-chart">
+                                <svg viewBox="0 0 400 200" preserveAspectRatio="none">
+                                    <defs>
+                                        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" style="stop-color:#e97627;stop-opacity:0.3" />
+                                            <stop offset="100%" style="stop-color:#e97627;stop-opacity:0.02" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M0,160 L33,140 L67,145 L100,120 L133,100 L167,110 L200,85 L233,70 L267,75 L300,55 L333,40 L367,45 L400,30 L400,200 L0,200 Z" fill="url(#areaGrad)" />
+                                    <path d="M0,160 L33,140 L67,145 L100,120 L133,100 L167,110 L200,85 L233,70 L267,75 L300,55 L333,40 L367,45 L400,30" fill="none" stroke="#e97627" stroke-width="2.5" />
+                                    <circle cx="300" cy="55" r="4" fill="#e97627" />
+                                    <circle cx="333" cy="40" r="4" fill="#e97627" />
+                                    <circle cx="400" cy="30" r="4" fill="#e97627" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="container">
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3>Data Sources</h3>
+                    <ul>
+                        <li>Salesforce CRM customer records</li>
+                        <li>Google Analytics web behavior data</li>
+                        <li>PostgreSQL subscription database</li>
+                        <li>Census Bureau geographic data</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Interactive map with drill-down to zip code</li>
+                        <li>Dynamic parameter-driven segmentation</li>
+                        <li>LOD expressions for cohort analysis</li>
+                        <li>Published to Tableau Server with extract refresh</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>Tools & Techniques</h3>
+                    <p>Tableau Desktop, Tableau Server, calculated fields, LOD expressions, map layers, parameter actions, data blending across CRM and web analytics sources.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Business Impact</h3>
+                    <p>Identified underserved geographic markets, contributing to a targeted expansion strategy that increased new customer acquisition by 15% in Q3. Enabled marketing team to optimize spend allocation by segment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Salvatore A Amico. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

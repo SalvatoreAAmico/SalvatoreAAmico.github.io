@@ -142,6 +142,120 @@
             margin-bottom: 1.5rem;
         }
 
+        /* BI Portfolio Section */
+        .bi-portfolio {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(42, 77, 87, 0.04) 0%, rgba(212, 87, 42, 0.03) 100%);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .bi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .bi-card {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            padding: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .bi-card:nth-child(1) { animation-delay: 0.1s; }
+        .bi-card:nth-child(2) { animation-delay: 0.2s; }
+        .bi-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .bi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+        }
+
+        .bi-card-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .bi-card-header.powerbi { background: linear-gradient(135deg, #f2c811 0%, #e8b70d 100%); }
+        .bi-card-header.tableau { background: linear-gradient(135deg, #e97627 0%, #c6591c 100%); }
+        .bi-card-header.looker { background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%); }
+
+        .bi-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            font-family: var(--font-display);
+        }
+
+        .bi-card-header.powerbi .bi-icon { color: #1a1a1a; }
+
+        .bi-card-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .bi-card-header.powerbi h3 { color: #1a1a1a; }
+
+        .bi-card-body {
+            padding: 2rem;
+        }
+
+        .bi-card-body .bi-preview {
+            width: 100%;
+            height: 200px;
+            background: rgba(42, 77, 87, 0.04);
+            border: 2px dashed rgba(42, 77, 87, 0.15);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bi-card-body h4 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .bi-card-body p {
+            color: var(--color-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .bi-card-body .project-link {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .bi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Projects Section */
         .projects {
             padding: 4rem 0;
@@ -430,10 +544,11 @@
             <div class="header-content">
                 <div>
                     <h1>Salvatore A Amico</h1>
-                    <p class="subtitle">Developer & Creative Thinker</p>
+                    <p class="subtitle">Data Engineering &mdash; Software Engineer II Senior</p>
                 </div>
                 <nav>
-                    <a href="#projects">Projects</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#projects">Experience</a>
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </nav>
@@ -444,63 +559,107 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h2>Building digital experiences that matter.</h2>
-                <p>I'm a developer passionate about creating elegant solutions to complex problems. With a focus on clean code and user-centered design, I bring ideas to life through thoughtful development and attention to detail.</p>
-                <p>Currently exploring new technologies and working on projects that push boundaries.</p>
+                <h2>Turning complex data into clear, actionable insights.</h2>
+                <p>Data Engineering focused professional with 6+ years of experience leveraging data from complex software systems to drive business decisions. Strong technical foundation in SQL and Python, paired with an MBA and proven ability to translate complex data into clear, actionable insights for technical and non-technical stakeholders.</p>
+                <p>Based in Leominster, MA. Currently seeking new opportunities in data analytics and business intelligence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="bi-portfolio">
+        <div class="container">
+            <h2 class="section-title">Data Dashboards</h2>
+            <div class="bi-grid">
+                <div class="bi-card">
+                    <div class="bi-card-header powerbi">
+                        <div class="bi-icon">PB</div>
+                        <h3>Power BI</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">Dashboard preview coming soon</div>
+                        <h4>Sales Performance Dashboard</h4>
+                        <p>Regional sales analytics and KPI tracking for a multi-product retail operation with DAX measures and row-level security.</p>
+                        <a href="powerbi-dashboard.html" class="project-link">View Dashboard</a>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header tableau">
+                        <div class="bi-icon">T</div>
+                        <h3>Tableau</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">Dashboard preview coming soon</div>
+                        <h4>Customer Analytics Explorer</h4>
+                        <p>Interactive geographic and demographic analysis of customer behavior with LOD expressions and parameter-driven segmentation.</p>
+                        <a href="tableau-dashboard.html" class="project-link">View Dashboard</a>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header looker">
+                        <div class="bi-icon">L</div>
+                        <h3>Looker</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">Dashboard preview coming soon</div>
+                        <h4>Operations Pipeline Dashboard</h4>
+                        <p>End-to-end pipeline visibility with LookML-modeled metrics, conversion funnels, and scheduled PDF delivery to leadership.</p>
+                        <a href="looker-dashboard.html" class="project-link">View Dashboard</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Selected Projects</h2>
+            <h2 class="section-title">Experience</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-number">01</div>
-                    <h3>Project Alpha</h3>
-                    <p>A web application that streamlines workflow management for creative teams, featuring real-time collaboration and intuitive task tracking.</p>
+                    <h3>Applied Materials</h3>
+                    <p>Business Intelligence / Software Engineer II Senior at Gloucester, MA (Feb 2019 &ndash; Apr 2025). Data and analytics lead for Archivist software supporting products generating $2B+ annually. Analyzed operational, system, and customer data to inform product decisions across 800+ shipped products.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Dashboarding</span>
+                        <span class="tag">KPI Scorecards</span>
                     </div>
-                    <a href="#" class="project-link">View Project</a>
                 </div>
 
                 <div class="project-card">
                     <div class="project-number">02</div>
-                    <h3>Data Visualizer</h3>
-                    <p>An interactive dashboard for analyzing and visualizing complex datasets, built with modern frameworks and optimized for performance.</p>
+                    <h3>AI Recommendation System</h3>
+                    <p>Developed an AI-based recommendation system using CUDA multithreading, achieving a 600x performance improvement. Produced a formal research paper on the results.</p>
                     <div class="project-tags">
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">D3.js</span>
-                        <span class="tag">Python</span>
+                        <span class="tag">CUDA</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">AI/ML</span>
+                        <span class="tag">Research</span>
                     </div>
-                    <a href="#" class="project-link">View Project</a>
                 </div>
 
                 <div class="project-card">
                     <div class="project-number">03</div>
-                    <h3>Mobile Experience</h3>
-                    <p>A cross-platform mobile application focused on delivering seamless user experiences with offline-first capabilities.</p>
+                    <h3>Startup Venture &mdash; Spectral Correction</h3>
+                    <p>Led a team that created a business model proposal for a start-up venture focused on methods for Spectral Correction, combining technical engineering with business strategy.</p>
                     <div class="project-tags">
-                        <span class="tag">React Native</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">TypeScript</span>
+                        <span class="tag">Business Strategy</span>
+                        <span class="tag">Team Leadership</span>
+                        <span class="tag">MBA</span>
                     </div>
-                    <a href="#" class="project-link">View Project</a>
                 </div>
 
                 <div class="project-card">
                     <div class="project-number">04</div>
-                    <h3>API Framework</h3>
-                    <p>A robust RESTful API framework designed for scalability and security, powering multiple production applications.</p>
+                    <h3>AutomaTech &mdash; GE Intelligent Platforms</h3>
+                    <p>Application Engineering Co-op (Summer 2015). Worked with GE Intelligent Platforms supporting industrial automation and data-driven control systems. Gained hands-on experience with industrial data flows and system monitoring.</p>
                     <div class="project-tags">
-                        <span class="tag">Express</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">Docker</span>
+                        <span class="tag">Industrial Automation</span>
+                        <span class="tag">Data Flows</span>
+                        <span class="tag">System Monitoring</span>
                     </div>
-                    <a href="#" class="project-link">View Project</a>
                 </div>
             </div>
         </div>
@@ -511,43 +670,43 @@
             <h2 class="section-title">Skills & Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Frontend Development</h3>
+                    <h3>Core Competencies</h3>
                     <ul class="skill-list">
-                        <li>JavaScript (ES6+)</li>
-                        <li>React / Vue / Angular</li>
-                        <li>HTML5 & CSS3</li>
-                        <li>Responsive Design</li>
-                        <li>TypeScript</li>
+                        <li>Data Analysis & Validation</li>
+                        <li>KPI Definition & Dashboarding</li>
+                        <li>Root Cause Analysis</li>
+                        <li>Requirements Gathering</li>
+                        <li>Stakeholder Management</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Backend Development</h3>
+                    <h3>Technical Abilities</h3>
                     <ul class="skill-list">
-                        <li>Node.js / Express</li>
-                        <li>Python / Django</li>
-                        <li>RESTful APIs</li>
-                        <li>Database Design</li>
-                        <li>Authentication & Security</li>
+                        <li>SQL (Advanced)</li>
+                        <li>Python</li>
+                        <li>Excel (Advanced)</li>
+                        <li>C++ / C# / C / .NET</li>
+                        <li>HTML / CUDA</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Tools & Platforms</h3>
+                    <h3>BI & Visualization</h3>
                     <ul class="skill-list">
-                        <li>Git / GitHub</li>
-                        <li>Docker</li>
-                        <li>AWS / Cloud Services</li>
-                        <li>CI/CD Pipelines</li>
-                        <li>Agile Methodologies</li>
+                        <li>Tableau</li>
+                        <li>Power BI</li>
+                        <li>Looker</li>
+                        <li>Qlik</li>
+                        <li>Executive Dashboards</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Design & UX</h3>
+                    <h3>Education</h3>
                     <ul class="skill-list">
-                        <li>UI/UX Principles</li>
-                        <li>Figma / Adobe XD</li>
-                        <li>Accessibility (WCAG)</li>
-                        <li>Performance Optimization</li>
-                        <li>User Research</li>
+                        <li>MBA &mdash; UMass Lowell (2023)</li>
+                        <li>MS Computer Engineering (2018)</li>
+                        <li>BS Computer Engineering (2017)</li>
+                        <li>GPA: 3.95</li>
+                        <li>Eagle Scout</li>
                     </ul>
                 </div>
             </div>
@@ -560,9 +719,9 @@
                 <h2 class="section-title">Let's Connect</h2>
                 <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hello, feel free to reach out.</p>
                 <div class="contact-links">
-                    <a href="mailto:hello@salvatoreamaico.com" class="contact-link">Send an Email</a>
-                    <a href="https://github.com/yourusername" class="contact-link secondary">View GitHub</a>
-                    <a href="https://linkedin.com/in/yourprofile" class="contact-link secondary">LinkedIn</a>
+                    <a href="mailto:SalvatoreAAmico@gmail.com" class="contact-link">Send an Email</a>
+                    <a href="https://github.com/SalvatoreAAmico" class="contact-link secondary">View GitHub</a>
+                    <a href="https://www.linkedin.com/in/salvatoreaamico/" class="contact-link secondary">LinkedIn</a>
                 </div>
             </div>
         </div>
