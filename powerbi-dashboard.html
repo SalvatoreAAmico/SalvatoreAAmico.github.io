@@ -89,9 +89,9 @@
             max-width: 800px;
         }
 
-        .dashboard-frame {
+        .video-frame {
             width: 100%;
-            background: white;
+            background: #000;
             border: 1px solid rgba(26, 26, 26, 0.08);
             border-radius: 8px;
             overflow: hidden;
@@ -99,196 +99,59 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
         }
 
-        .dashboard-frame-header {
+        .video-frame video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-caption {
             background: #f5f5f3;
             padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid rgba(26, 26, 26, 0.08);
-        }
-
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
-        .dot.red { background: #ff5f57; }
-        .dot.yellow { background: #febc2e; }
-        .dot.green { background: #28c840; }
-
-        .dashboard-content {
-            padding: 2rem;
-            min-height: 500px;
-        }
-
-        .map-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .map-placeholder {
-            background: linear-gradient(135deg, #eef4f7 0%, #dde8ec 100%);
-            border: 1px solid rgba(42, 77, 87, 0.1);
-            border-radius: 6px;
-            min-height: 320px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .map-placeholder::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                linear-gradient(170deg, transparent 40%, rgba(29, 66, 138, 0.08) 40%, rgba(29, 66, 138, 0.08) 45%, transparent 45%),
-                linear-gradient(165deg, transparent 50%, rgba(200, 16, 46, 0.06) 50%, rgba(200, 16, 46, 0.06) 55%, transparent 55%),
-                linear-gradient(175deg, transparent 30%, rgba(253, 185, 39, 0.1) 30%, rgba(253, 185, 39, 0.1) 33%, transparent 33%),
-                radial-gradient(circle at 80% 25%, rgba(200, 16, 46, 0.15) 0%, transparent 15%),
-                radial-gradient(circle at 85% 20%, rgba(29, 66, 138, 0.2) 0%, transparent 10%),
-                radial-gradient(circle at 20% 70%, rgba(29, 66, 138, 0.12) 0%, transparent 12%),
-                radial-gradient(circle at 50% 50%, rgba(253, 185, 39, 0.08) 0%, transparent 20%);
-        }
-
-        .map-title {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--color-secondary);
-            z-index: 1;
-        }
-
-        .filter-panel {
-            background: #f9f9f7;
-            border: 1px solid rgba(26, 26, 26, 0.06);
-            border-radius: 6px;
-            padding: 1.5rem;
-        }
-
-        .filter-panel h3 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--color-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .filter-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .filter-group label {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--color-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .filter-select {
-            width: 100%;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid rgba(26, 26, 26, 0.15);
-            border-radius: 4px;
-            font-family: var(--font-body);
             font-size: 0.85rem;
-            color: var(--color-text);
-            background: white;
+            color: var(--color-muted);
+            text-align: center;
         }
 
-        .filter-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+        .model-section {
+            padding: 0 0 4rem;
         }
 
-        .filter-chip {
-            padding: 0.3rem 0.7rem;
-            font-size: 0.75rem;
-            border-radius: 3px;
-            border: 1px solid rgba(242, 200, 17, 0.4);
-            color: var(--color-accent-dark);
-            background: rgba(242, 200, 17, 0.1);
-            font-weight: 500;
-        }
-
-        .filter-chip.active {
-            background: var(--color-accent);
-            color: #1a1a1a;
-            border-color: var(--color-accent);
-        }
-
-        .charts-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .widget {
-            background: #f9f9f7;
-            border: 1px solid rgba(26, 26, 26, 0.06);
-            border-radius: 6px;
-            padding: 1.5rem;
-        }
-
-        .widget h3 {
+        .model-section h2 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 2rem;
             font-weight: 600;
             color: var(--color-secondary);
             margin-bottom: 1rem;
         }
 
-        .hbar-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .hbar-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .hbar-label {
-            width: 100px;
-            font-size: 0.8rem;
+        .model-section > .container > p {
             color: var(--color-muted);
-            text-align: right;
-            flex-shrink: 0;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
         }
 
-        .hbar-track {
-            flex: 1;
-            height: 22px;
-            background: rgba(26, 26, 26, 0.04);
-            border-radius: 3px;
+        .model-frame {
+            width: 100%;
+            background: #1e1e1e;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
         }
 
-        .hbar-fill {
-            height: 100%;
-            border-radius: 3px;
-            background: linear-gradient(90deg, #f2c811, #e8b70d);
+        .model-frame img {
+            width: 100%;
+            display: block;
         }
 
-        .hbar-value {
-            width: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--color-secondary);
+        .model-caption {
+            background: #f5f5f3;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            text-align: center;
         }
-
-        .area-chart {
-            height: 200px;
-            position: relative;
-        }
-
-        .area-chart svg { width: 100%; height: 100%; }
 
         .details-section {
             padding: 0 0 4rem;
@@ -347,6 +210,7 @@
             .map-section { grid-template-columns: 1fr; }
             .charts-row { grid-template-columns: 1fr; }
             .details-grid { grid-template-columns: 1fr; }
+            .coming-soon-grid { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
@@ -369,101 +233,31 @@
             <h2>Dashboard Overview</h2>
             <p>This four-page Power BI report explores 75+ years of NBA history through data. From the 3-point revolution and pace changes in "League Evolution," to all-time greats in "Player Greatness," draft pick value curves in "The Draft," and franchise dominance in "Team Dynasties" &mdash; each page tells a distinct story about how the game has transformed.</p>
 
-            <div class="dashboard-frame">
-                <div class="dashboard-frame-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
+            <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 2rem;">Data sourced from <a href="https://www.kaggle.com/datasets/sumitrodatta/nba-aba-baa-stats" target="_blank" rel="noopener" style="color: var(--color-secondary); text-decoration: underline;">NBA/ABA/BAA Stats on Kaggle</a> (sumitrodatta) &mdash; dataset version pulled Feb 6, 2026.</p>
+
+            <div class="video-frame">
+                <video controls preload="metadata" poster="">
+                    <source src="nba-dashboard-demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-caption">Dashboard walkthrough &mdash; interactive demo not available without Power BI Pro license. The full .pbix file is available upon request &mdash; feel free to <a href="index.html#contact" style="color: var(--color-secondary); text-decoration: underline;">reach out</a>.</div>
+            </div>
+
+            <div class="coming-soon-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1rem;">
+                <div style="background: linear-gradient(135deg, #1D428A 0%, #2a5298 100%); border-radius: 8px; padding: 2.5rem 1.5rem; text-align: center; border: 1px solid rgba(26,26,26,0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                    <div style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: #FDB927; margin-bottom: 0.5rem;">Player Greatness</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Career Win Shares vs VORP, peak PER, all-time rankings</div>
+                    <span style="display: inline-block; background: rgba(255,255,255,0.15); color: #FDB927; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;">COMING SOON</span>
                 </div>
-                <div class="dashboard-content">
-                    <div class="map-section">
-                        <div class="map-placeholder">
-                            <div class="map-title">Avg PPG &amp; 3PA Per Game by Season</div>
-                        </div>
-                        <div class="filter-panel">
-                            <h3>Filters</h3>
-                            <div class="filter-group">
-                                <label>Era</label>
-                                <div class="filter-chips">
-                                    <span class="filter-chip active">All</span>
-                                    <span class="filter-chip">Pre-3PT</span>
-                                    <span class="filter-chip">1980s&ndash;90s</span>
-                                    <span class="filter-chip">Modern</span>
-                                </div>
-                            </div>
-                            <div class="filter-group">
-                                <label>Season Range</label>
-                                <select class="filter-select">
-                                    <option>1947 &ndash; 2024</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>League</label>
-                                <div class="filter-chips">
-                                    <span class="filter-chip active">NBA</span>
-                                    <span class="filter-chip">ABA</span>
-                                </div>
-                            </div>
-                            <div class="filter-group">
-                                <label>Min Games Played</label>
-                                <select class="filter-select">
-                                    <option>200+</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="charts-row">
-                        <div class="widget">
-                            <h3>Career Win Shares &mdash; Top Players</h3>
-                            <div class="hbar-chart">
-                                <div class="hbar-row">
-                                    <span class="hbar-label">LeBron James</span>
-                                    <div class="hbar-track"><div class="hbar-fill" style="width: 96%;"></div></div>
-                                    <span class="hbar-value">267.6</span>
-                                </div>
-                                <div class="hbar-row">
-                                    <span class="hbar-label">Kareem</span>
-                                    <div class="hbar-track"><div class="hbar-fill" style="width: 92%;"></div></div>
-                                    <span class="hbar-value">273.4</span>
-                                </div>
-                                <div class="hbar-row">
-                                    <span class="hbar-label">Jordan</span>
-                                    <div class="hbar-track"><div class="hbar-fill" style="width: 82%;"></div></div>
-                                    <span class="hbar-value">214.0</span>
-                                </div>
-                                <div class="hbar-row">
-                                    <span class="hbar-label">Wilt</span>
-                                    <div class="hbar-track"><div class="hbar-fill" style="width: 78%;"></div></div>
-                                    <span class="hbar-value">247.3</span>
-                                </div>
-                                <div class="hbar-row">
-                                    <span class="hbar-label">Malone</span>
-                                    <div class="hbar-track"><div class="hbar-fill" style="width: 75%;"></div></div>
-                                    <span class="hbar-value">234.6</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="widget">
-                            <h3>Avg 3-Point Attempts Per Game by Season</h3>
-                            <div class="area-chart">
-                                <svg viewBox="0 0 400 200" preserveAspectRatio="none">
-                                    <defs>
-                                        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" style="stop-color:#f2c811;stop-opacity:0.3" />
-                                            <stop offset="100%" style="stop-color:#f2c811;stop-opacity:0.02" />
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M0,160 L33,140 L67,145 L100,120 L133,100 L167,110 L200,85 L233,70 L267,75 L300,55 L333,40 L367,45 L400,30 L400,200 L0,200 Z" fill="url(#areaGrad)" />
-                                    <path d="M0,160 L33,140 L67,145 L100,120 L133,100 L167,110 L200,85 L233,70 L267,75 L300,55 L333,40 L367,45 L400,30" fill="none" stroke="#e8b70d" stroke-width="2.5" />
-                                    <circle cx="300" cy="55" r="4" fill="#e8b70d" />
-                                    <circle cx="333" cy="40" r="4" fill="#e8b70d" />
-                                    <circle cx="400" cy="30" r="4" fill="#e8b70d" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                <div style="background: linear-gradient(135deg, #1D428A 0%, #2a5298 100%); border-radius: 8px; padding: 2.5rem 1.5rem; text-align: center; border: 1px solid rgba(26,26,26,0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                    <div style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: #FDB927; margin-bottom: 0.5rem;">The Draft</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Pick value curves, bust/steal identification, college pipelines</div>
+                    <span style="display: inline-block; background: rgba(255,255,255,0.15); color: #FDB927; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;">COMING SOON</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #1D428A 0%, #2a5298 100%); border-radius: 8px; padding: 2.5rem 1.5rem; text-align: center; border: 1px solid rgba(26,26,26,0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+                    <div style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: #FDB927; margin-bottom: 0.5rem;">Team Dynasties</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Rolling 5-year wins, net rating, franchise dominance</div>
+                    <span style="display: inline-block; background: rgba(255,255,255,0.15); color: #FDB927; padding: 0.35rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;">COMING SOON</span>
                 </div>
             </div>
         </div>
@@ -498,6 +292,17 @@
                     <h3>Data &amp; Design</h3>
                     <p>Built on historical NBA/ABA player, team, and draft data. Themed with NBA brand colors (#1D428A, #C8102E, #FDB927). Designed for storytelling &mdash; each page answers a specific question about how the game has changed.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="model-section">
+        <div class="container">
+            <h2>Data Model</h2>
+            <p>Star schema with 3 dimension tables (Dim_Seasons, Dim_Players, Dim_Leagues) connecting 10 fact tables covering player stats, team performance, draft history, awards, and shooting data.</p>
+            <div class="model-frame">
+                <img src="nba-model-view.png" alt="Power BI data model view showing star schema with dimension and fact tables" loading="lazy">
+                <div class="model-caption">Power BI Model View &mdash; star schema with season, player, and league dimensions</div>
             </div>
         </div>
     </section>
