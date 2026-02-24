@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau Dashboard - Salvatore A Amico</title>
+    <title>Global Inflation Tracker &mdash; Tableau | Salvatore A Amico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
             line-height: 1.6;
         }
 
+        /* Back nav */
         .back-nav {
             padding: 1.5rem 2rem;
             border-bottom: 1px solid rgba(26, 26, 26, 0.1);
@@ -51,6 +52,7 @@
             padding: 0 2rem;
         }
 
+        /* Hero */
         .hero-banner {
             background: linear-gradient(135deg, #e97627 0%, #c6591c 100%);
             padding: 4rem 0;
@@ -70,40 +72,90 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .coming-soon-section {
-            padding: 6rem 0;
-            text-align: center;
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .coming-soon-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            opacity: 0.3;
+        .hero-meta span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
         }
 
-        .coming-soon-section h2 {
+        /* Dashboard embed section */
+        .dashboard-section {
+            padding: 4rem 0;
+        }
+
+        .dashboard-section h2 {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 600;
             color: var(--color-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
-        .coming-soon-section p {
+        .dashboard-section > .container > p {
             color: var(--color-muted);
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.05rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-bottom: 2rem;
         }
 
-        .project-details {
+        .tableau-frame {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .tableau-caption {
+            padding: 0.75rem 1.25rem;
+            background: rgba(42, 77, 87, 0.04);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+            font-size: 0.85rem;
+            color: var(--color-muted);
+        }
+
+        /* Details section */
+        .details-section {
+            padding: 3rem 0 4rem;
+            background: linear-gradient(135deg, rgba(42, 77, 87, 0.03) 0%, rgba(212, 87, 42, 0.02) 100%);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .details-section h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .details-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-accent);
+        }
+
+        .details-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 3rem auto 0;
-            text-align: left;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
 
         .detail-card {
@@ -121,13 +173,20 @@
             margin-bottom: 1rem;
         }
 
-        .detail-card p, .detail-card li {
+        .detail-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-card ul li {
             color: var(--color-muted);
             line-height: 1.8;
             font-size: 0.95rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.05);
         }
 
-        .detail-card ul { list-style: none; padding: 0; }
+        .detail-card ul li:last-child { border-bottom: none; }
 
         .detail-card ul li::before {
             content: '\2022';
@@ -136,6 +195,20 @@
             margin-right: 0.75rem;
         }
 
+        /* Source citation */
+        .source-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .source-note {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            border-left: 3px solid var(--color-accent);
+            padding-left: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
         footer {
             padding: 3rem 0;
             border-top: 1px solid rgba(26, 26, 26, 0.1);
@@ -144,17 +217,25 @@
             font-size: 0.95rem;
         }
 
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .project-details { grid-template-columns: 1fr; }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .details-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .details-grid { grid-template-columns: 1fr; }
+            .hero-meta { gap: 0.75rem; }
         }
     </style>
 </head>
 <body>
+
     <nav class="back-nav">
         <div class="container">
             <a href="index.html">Back to Portfolio</a>
@@ -163,39 +244,156 @@
 
     <div class="hero-banner">
         <div class="container">
-            <h1>Tableau &mdash; Brazilian E-Commerce Analytics</h1>
-            <p>Order fulfillment, customer segmentation, and revenue analysis on 100k real-world orders</p>
+            <h1>Tableau &mdash; Global Inflation Tracker</h1>
+            <p>Interactive analysis of worldwide inflation trends across 16 major economies, 2019&ndash;2025</p>
+            <div class="hero-meta">
+                <span>Tableau Public</span>
+                <span>IMF World Economic Outlook Data</span>
+                <span>16 Countries</span>
+                <span>2019 &ndash; 2025</span>
+            </div>
         </div>
     </div>
 
-    <section class="coming-soon-section">
+    <section class="dashboard-section">
         <div class="container">
-            <div class="coming-soon-icon">T</div>
-            <h2>Coming Soon</h2>
-            <p>This dashboard is currently in development. Built on the Olist Brazilian E-Commerce public dataset from Kaggle &mdash; 100k orders with customer data, product catalogs, seller performance, reviews, and payment information.</p>
+            <h2>Live Dashboard</h2>
+            <p>Explore inflation trends across major economies from the pre-pandemic baseline through the post-2022 tightening cycle. Use the filters to compare countries, isolate regions, and trace how monetary policy shaped global price stability.</p>
 
-            <div class="project-details">
-                <div class="detail-card">
-                    <h3>Dataset</h3>
-                    <ul>
-                        <li>100k orders (2016&ndash;2018)</li>
-                        <li>Customer geolocation data</li>
-                        <li>Product categories &amp; seller info</li>
-                        <li>Order reviews &amp; ratings</li>
-                        <li>Payment types &amp; installments</li>
-                    </ul>
+            <div class="tableau-frame">
+                <div class='tableauPlaceholder' id='viz1771965784810' style='position: relative'>
+                    <noscript>
+                        <a href='#'>
+                            <img alt='Global Inflation Dashboard' src='https://public.tableau.com/static/images/US/US-Inflation-Analysis_2019-2025/GlobalInflationDashboard/1_rss.png' style='border: none' />
+                        </a>
+                    </noscript>
+                    <object class='tableauViz' style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                        <param name='embed_code_version' value='3' />
+                        <param name='site_root' value='' />
+                        <param name='name' value='US-Inflation-Analysis_2019-2025&#47;GlobalInflationDashboard' />
+                        <param name='tabs' value='no' />
+                        <param name='toolbar' value='yes' />
+                        <param name='static_image' value='https://public.tableau.com/static/images/US/US-Inflation-Analysis_2019-2025/GlobalInflationDashboard/1.png' />
+                        <param name='animate_transition' value='yes' />
+                        <param name='display_static_image' value='yes' />
+                        <param name='display_spinner' value='yes' />
+                        <param name='display_overlay' value='yes' />
+                        <param name='display_count' value='yes' />
+                        <param name='language' value='en-US' />
+                        <param name='filter' value='publish=yes' />
+                    </object>
                 </div>
-                <div class="detail-card">
-                    <h3>Planned Analysis</h3>
-                    <ul>
-                        <li>Order fulfillment &amp; delivery performance</li>
-                        <li>Customer segmentation by region</li>
-                        <li>Revenue trends &amp; product category mix</li>
-                        <li>Seller performance &amp; review sentiment</li>
-                        <li>Tableau Desktop, calculated fields &amp; LOD expressions</li>
-                    </ul>
-                </div>
+                <script type='text/javascript'>
+                    var divElement = document.getElementById('viz1771965784810');
+                    var vizElement = divElement.getElementsByTagName('object')[0];
+                    if (divElement.offsetWidth > 800) {
+                        vizElement.style.minWidth = '420px';
+                        vizElement.style.maxWidth = '1300px';
+                        vizElement.style.width = '100%';
+                        vizElement.style.minHeight = '587px';
+                        vizElement.style.maxHeight = '887px';
+                        vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                    } else if (divElement.offsetWidth > 500) {
+                        vizElement.style.minWidth = '420px';
+                        vizElement.style.maxWidth = '1300px';
+                        vizElement.style.width = '100%';
+                        vizElement.style.minHeight = '587px';
+                        vizElement.style.maxHeight = '887px';
+                        vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                    } else {
+                        vizElement.style.width = '100%';
+                        vizElement.style.height = '1427px';
+                    }
+                    var scriptElement = document.createElement('script');
+                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                </script>
+                <div class="tableau-caption">Live embed via Tableau Public &mdash; use filters to explore by country, region, and year.</div>
             </div>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="container">
+            <h2>Project Details</h2>
+            <div class="details-grid">
+
+                <div class="detail-card">
+                    <h3>Data Source</h3>
+                    <ul>
+                        <li>IMF World Economic Outlook Database, April 2025</li>
+                        <li>Indicator: PCPIPCH (CPI % change)</li>
+                        <li>16 major economies selected</li>
+                        <li>Annual data, 2019&ndash;2025</li>
+                        <li>2025 values are IMF forecasts</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Countries Covered</h3>
+                    <ul>
+                        <li>North America: USA, Canada, Mexico</li>
+                        <li>Europe: Germany, France, UK, Switzerland, Russia, Turkey</li>
+                        <li>Asia-Pacific: China, Japan, South Korea, India, Australia</li>
+                        <li>Latin America: Brazil, Argentina</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Key Insights</h3>
+                    <ul>
+                        <li>Global inflation peaked sharply in 2022 driven by energy and supply shocks</li>
+                        <li>Argentina and Turkey show extreme outlier inflation throughout the period</li>
+                        <li>Developed economies recovered faster via monetary tightening</li>
+                        <li>China near deflation in 2024&ndash;2025, contrasting global trend</li>
+                        <li>Switzerland maintained the lowest inflation of all 16 economies</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Dashboard Views</h3>
+                    <ul>
+                        <li>Global heatmap &mdash; inflation by country and year</li>
+                        <li>Time-series trend lines with event annotations</li>
+                        <li>Country ranking bar chart (sortable)</li>
+                        <li>Regional average comparison</li>
+                        <li>Interactive filters: year, country, region</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>IMF data acquisition &amp; ETL (Excel Power Query)</li>
+                        <li>Data unpivoting &amp; long-format transformation</li>
+                        <li>Tableau calculated fields &amp; LOD expressions</li>
+                        <li>Geographic mapping &amp; custom color scales</li>
+                        <li>Dashboard actions, filters &amp; cross-sheet highlighting</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Major Events Annotated</h3>
+                    <ul>
+                        <li>Mar 2020 &mdash; COVID-19 Pandemic Declared</li>
+                        <li>Mar 2021 &mdash; US Stimulus Package</li>
+                        <li>Feb 2022 &mdash; Russia-Ukraine Conflict Begins</li>
+                        <li>Mar 2022 &mdash; Fed Rate Hike Cycle Begins</li>
+                        <li>Sep 2024 &mdash; Fed Begins Cutting Rates</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="source-section">
+        <div class="container">
+            <p class="source-note">
+                <strong>Data Source:</strong> International Monetary Fund, World Economic Outlook Database, April 2025.<br>
+                Inflation measured as year-over-year percent change in the Consumer Price Index (CPI). 2025 figures represent IMF projections.
+            </p>
         </div>
     </section>
 
@@ -204,5 +402,6 @@
             <p>&copy; 2026 Salvatore A Amico. All rights reserved.</p>
         </div>
     </footer>
+
 </body>
 </html>
