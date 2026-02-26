@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Looker Dashboard - Salvatore A Amico</title>
+    <title>Looker Studio — Tech Layoff Tracker | Salvatore A Amico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -51,8 +51,9 @@
             padding: 0 2rem;
         }
 
+        /* Hero */
         .hero-banner {
-            background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #1d4ed8 100%);
             padding: 4rem 0;
             animation: fadeIn 0.8s ease-out;
         }
@@ -62,23 +63,51 @@
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
             color: white;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .hero-banner p {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 640px;
+            margin-bottom: 2rem;
         }
 
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-stat .value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #60a5fa;
+        }
+
+        .hero-stat .label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 0.2rem;
+        }
+
+        /* Coming Soon */
         .coming-soon-section {
-            padding: 6rem 0;
+            padding: 5rem 0;
             text-align: center;
         }
 
         .coming-soon-icon {
+            font-family: var(--font-display);
             font-size: 4rem;
-            margin-bottom: 2rem;
-            opacity: 0.3;
+            font-weight: 300;
+            color: rgba(66, 133, 244, 0.2);
+            margin-bottom: 1.5rem;
         }
 
         .coming-soon-section h2 {
@@ -89,20 +118,53 @@
             margin-bottom: 1rem;
         }
 
-        .coming-soon-section p {
+        .coming-soon-section > .container > p {
             color: var(--color-muted);
             line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            max-width: 640px;
+            margin: 0 auto 3rem;
             font-size: 1.05rem;
         }
 
+        /* Stats strip */
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 860px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .stat-tile {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .stat-tile .stat-val {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-tile .stat-label {
+            font-size: 0.78rem;
+            color: var(--color-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        /* Detail cards */
         .project-details {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            max-width: 800px;
-            margin: 3rem auto 0;
+            max-width: 860px;
+            margin: 0 auto;
             text-align: left;
         }
 
@@ -110,7 +172,6 @@
             background: white;
             border: 1px solid rgba(26, 26, 26, 0.08);
             padding: 2rem;
-            border-radius: 6px;
         }
 
         .detail-card h3 {
@@ -119,21 +180,92 @@
             font-weight: 600;
             color: var(--color-secondary);
             margin-bottom: 1rem;
-        }
-
-        .detail-card p, .detail-card li {
-            color: var(--color-muted);
-            line-height: 1.8;
-            font-size: 0.95rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(66, 133, 244, 0.2);
         }
 
         .detail-card ul { list-style: none; padding: 0; }
+
+        .detail-card ul li {
+            color: var(--color-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.04);
+        }
+
+        .detail-card ul li:last-child { border-bottom: none; }
 
         .detail-card ul li::before {
             content: '\2022';
             color: var(--color-accent);
             font-weight: bold;
             margin-right: 0.75rem;
+        }
+
+        /* Insights strip */
+        .insights-section {
+            padding: 4rem 0;
+            background: rgba(66, 133, 244, 0.03);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .insights-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .insights-section .section-note {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .insight-card {
+            background: white;
+            border: 1px solid rgba(26, 26, 26, 0.08);
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .insight-card p {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .insight-card .insight-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Source */
+        .source-section {
+            padding: 2rem 0 3rem;
+        }
+
+        .source-note {
+            border-left: 3px solid rgba(26, 26, 26, 0.15);
+            padding: 1rem 1.5rem;
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 700px;
         }
 
         footer {
@@ -151,6 +283,8 @@
 
         @media (max-width: 768px) {
             .project-details { grid-template-columns: 1fr; }
+            .stat-strip { grid-template-columns: 1fr 1fr; }
+            .hero-stats { gap: 1.5rem; }
         }
     </style>
 </head>
@@ -163,8 +297,26 @@
 
     <div class="hero-banner">
         <div class="container">
-            <h1>Looker &mdash; Competitive Pickleball Analytics</h1>
-            <p>Shot-level analysis of 300k+ rally outcomes from competitive doubles matches across all skill levels</p>
+            <h1>Looker Studio &mdash; Tech Layoff Tracker</h1>
+            <p>Interactive analysis of 500,000+ tech industry layoffs from 2020&ndash;2025 across 1,800+ companies and 57 industries worldwide.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="value">500k+</div>
+                    <div class="label">Layoff Events</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value">1,800+</div>
+                    <div class="label">Companies</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value">57</div>
+                    <div class="label">Industries</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value">6</div>
+                    <div class="label">Chart Types</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -172,29 +324,84 @@
         <div class="container">
             <div class="coming-soon-icon">L</div>
             <h2>Coming Soon</h2>
-            <p>This dashboard is currently in development. Built on pklmart's Competitive Pickleball Extracts from Kaggle &mdash; 300k+ shot and rally outcomes from competitive doubles matches across all skill levels.</p>
+            <p>Building an interactive Looker Studio dashboard tracking the tech industry&rsquo;s largest wave of job cuts since the dot-com era. Powered by Layoffs.fyi data cleaned in Excel and connected live through Google Sheets &mdash; with 6 interactive charts and cross-filtering across Year, Industry, Country, and Date Range.</p>
+
+            <div class="stat-strip">
+                <div class="stat-tile">
+                    <div class="stat-val">536k</div>
+                    <div class="stat-label">Total Laid Off</div>
+                </div>
+                <div class="stat-tile">
+                    <div class="stat-val">Jan '23</div>
+                    <div class="stat-label">Peak Month</div>
+                </div>
+                <div class="stat-tile">
+                    <div class="stat-val">68%</div>
+                    <div class="stat-label">US-Based</div>
+                </div>
+                <div class="stat-tile">
+                    <div class="stat-val">22%</div>
+                    <div class="stat-label">Avg % Cut</div>
+                </div>
+            </div>
 
             <div class="project-details">
                 <div class="detail-card">
                     <h3>Dataset</h3>
                     <ul>
-                        <li>300k+ shot &amp; rally outcomes</li>
-                        <li>Hierarchical: Games &rarr; Rallies &rarr; Shots</li>
-                        <li>Player profiles &amp; 2-person team groupings</li>
-                        <li>All skill levels, doubles matches only</li>
-                        <li>Source: pklmart (Kaggle, CC BY-NC-SA 4.0)</li>
+                        <li>500k+ layoff events &mdash; 2020 to 2025</li>
+                        <li>Source: Layoffs.fyi (cited by Bloomberg, NYT &amp; CNBC)</li>
+                        <li>Fields: Company, Industry, Country, Stage, Date</li>
+                        <li>Metrics: Total Laid Off, % Laid Off, Funds Raised ($M)</li>
+                        <li>Cleaned in Excel, hosted live in Google Sheets</li>
+                        <li>1,800+ companies across 57 industries</li>
                     </ul>
                 </div>
                 <div class="detail-card">
-                    <h3>Planned Analysis</h3>
+                    <h3>Dashboard Features</h3>
                     <ul>
-                        <li>Shot distribution by type &amp; skill level</li>
-                        <li>Third shot strategy: drop vs. drive effectiveness</li>
-                        <li>Rally length &amp; momentum analysis</li>
-                        <li>Player &amp; team performance breakdowns</li>
-                        <li>Looker (Google Cloud), LookML, BigQuery</li>
+                        <li>4 KPI scorecards: Total Laid Off, Companies, Hardest-Hit Industry, Peak Month</li>
+                        <li>Monthly Layoffs Timeline &mdash; 2020 to 2025</li>
+                        <li>Industry Breakdown: top 10 sectors by headcount</li>
+                        <li>Top Companies Table with heatmap coloring</li>
+                        <li>Geographic Bubble Map by country</li>
+                        <li>Funding Stage donut chart (Seed through Post-IPO)</li>
+                        <li>Filters: Year, Industry, Country, Date Range</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="insights-section">
+        <div class="container">
+            <h2>Key Findings to Surface</h2>
+            <p class="section-note">Insights the finished dashboard will make visible at a glance</p>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-label">Peak Event</div>
+                    <p>January 2023 was the worst single month &mdash; ~89,000 layoffs &mdash; driven by post-holiday budget resets after 2022 Federal Reserve rate hikes.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">The Big Tech Winter</div>
+                    <p>November 2022 through March 2023 accounted for over 40% of all layoffs in the dataset, led by Amazon, Meta, Microsoft, and Google.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">Stage vs. Severity</div>
+                    <p>Post-IPO companies dominated absolute layoff counts, but Seed-stage startups had the highest percentage laid off &mdash; many were outright shut down.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">Sector Exposure</div>
+                    <p>Consumer and Retail were hardest hit &mdash; both heavily exposed to pandemic-era spending that reversed sharply when interest rates rose in 2022.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="source-section">
+        <div class="container">
+            <div class="source-note">
+                <strong>Data source:</strong> Layoffs.fyi &mdash; a crowd-sourced database tracking tech company layoffs worldwide since March 2020. Cited by Bloomberg, the New York Times, and CNBC. Tool: Google Looker Studio (free, browser-based). Data cleaned in Microsoft Excel and connected live via Google Sheets.
             </div>
         </div>
     </section>
