@@ -567,10 +567,23 @@
         .bi-card-header.py-stats  { background: linear-gradient(135deg, #5c35a0 0%, #3d1f8a 100%); }
         .bi-card-header.py-pipe   { background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%); }
 
+        /* Data Engineering card header colors */
+        .bi-card-header.de-airflow { background: linear-gradient(135deg, #017cee 0%, #0056b3 100%); }
+        .bi-card-header.de-dbt    { background: linear-gradient(135deg, #ff694b 0%, #c94530 100%); }
+        .bi-card-header.de-spark  { background: linear-gradient(135deg, #e25a1c 0%, #b84214 100%); }
+
         /* Excel card header colors */
         .bi-card-header.xl-dash { background: linear-gradient(135deg, #217346 0%, #155235 100%); }
         .bi-card-header.xl-pq   { background: linear-gradient(135deg, #0d7a5f 0%, #095a47 100%); }
         .bi-card-header.xl-vba  { background: linear-gradient(135deg, #2a4d57 0%, #1a3540 100%); }
+
+        /* Data Engineering section background */
+        .de-portfolio {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.05) 0%, rgba(1, 124, 238, 0.03) 100%);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
 
         /* Coming soon badge */
         .coming-soon-badge {
@@ -601,6 +614,7 @@
                     <a href="#portfolio">Portfolio</a>
                     <a href="#sql-analytics">SQL</a>
                     <a href="#python-analysis">Python</a>
+                    <a href="#de-pipelines">Pipelines</a>
                     <a href="#excel-reporting">Excel</a>
                     <a href="#projects">Experience</a>
                     <a href="#skills">Skills</a>
@@ -802,6 +816,75 @@
                             <span class="tag">ETL</span>
                             <span class="tag">REST API</span>
                             <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="de-pipelines" class="de-portfolio">
+        <div class="container">
+            <h2 class="section-title">Data Engineering &amp; Pipelines</h2>
+            <div class="bi-grid">
+
+                <div class="bi-card">
+                    <div class="bi-card-header de-airflow">
+                        <div class="bi-icon">AF</div>
+                        <h3>Airflow</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>ETL Orchestration Pipeline</h4>
+                        <p>Scheduled multi-step DAG orchestrating data extraction, transformation, and warehouse loading with dependency management, retry logic, and failure alerting.</p>
+                        <div class="project-tags">
+                            <span class="tag">Airflow</span>
+                            <span class="tag">DAGs</span>
+                            <span class="tag">Orchestration</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header de-dbt">
+                        <div class="bi-icon">dbt</div>
+                        <h3>dbt</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Data Warehouse Modeling</h4>
+                        <p>Dimensional data models for a retail analytics warehouse using dbt &mdash; incremental builds, data quality tests, lineage documentation, and a clean star schema.</p>
+                        <div class="project-tags">
+                            <span class="tag">dbt</span>
+                            <span class="tag">Data Modeling</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Star Schema</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header de-spark">
+                        <div class="bi-icon">Sp</div>
+                        <h3>PySpark</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Large-Scale Batch Processing</h4>
+                        <p>PySpark pipeline processing 10M+ records with partitioned reads, distributed aggregations, and optimized writes to a cloud data lake in Parquet format.</p>
+                        <div class="project-tags">
+                            <span class="tag">PySpark</span>
+                            <span class="tag">Spark</span>
+                            <span class="tag">Data Lake</span>
+                            <span class="tag">Parquet</span>
                         </div>
                     </div>
                 </div>
