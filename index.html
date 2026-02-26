@@ -534,6 +534,57 @@
                 justify-content: center;
             }
         }
+
+        /* SQL, Python, Excel Portfolio Sections */
+        .sql-portfolio {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(51, 103, 145, 0.05) 0%, rgba(30, 74, 106, 0.03) 100%);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .python-portfolio {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(57, 73, 171, 0.05) 0%, rgba(92, 53, 160, 0.03) 100%);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        .excel-portfolio {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(33, 115, 70, 0.05) 0%, rgba(21, 82, 53, 0.03) 100%);
+            border-top: 1px solid rgba(26, 26, 26, 0.06);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+        }
+
+        /* SQL card header colors */
+        .bi-card-header.sql-pg { background: linear-gradient(135deg, #336791 0%, #1e4a6a 100%); }
+        .bi-card-header.sql-bq { background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); }
+        .bi-card-header.sql-ss { background: linear-gradient(135deg, #c0392b 0%, #922b21 100%); }
+
+        /* Python card header colors */
+        .bi-card-header.py-pandas { background: linear-gradient(135deg, #306998 0%, #1a4a70 100%); }
+        .bi-card-header.py-stats  { background: linear-gradient(135deg, #5c35a0 0%, #3d1f8a 100%); }
+        .bi-card-header.py-pipe   { background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%); }
+
+        /* Excel card header colors */
+        .bi-card-header.xl-dash { background: linear-gradient(135deg, #217346 0%, #155235 100%); }
+        .bi-card-header.xl-pq   { background: linear-gradient(135deg, #0d7a5f 0%, #095a47 100%); }
+        .bi-card-header.xl-vba  { background: linear-gradient(135deg, #2a4d57 0%, #1a3540 100%); }
+
+        /* Coming soon badge */
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(42, 77, 87, 0.1);
+            color: var(--color-secondary);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border: 1px solid rgba(42, 77, 87, 0.2);
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
@@ -548,6 +599,9 @@
                 </div>
                 <nav>
                     <a href="#portfolio">Portfolio</a>
+                    <a href="#sql-analytics">SQL</a>
+                    <a href="#python-analysis">Python</a>
+                    <a href="#excel-reporting">Excel</a>
                     <a href="#projects">Experience</a>
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
@@ -612,6 +666,213 @@
                         <a href="looker-dashboard.html" class="project-link">View Dashboard</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sql-analytics" class="sql-portfolio">
+        <div class="container">
+            <h2 class="section-title">SQL &amp; Analytics</h2>
+            <div class="bi-grid">
+
+                <div class="bi-card">
+                    <div class="bi-card-header sql-pg">
+                        <div class="bi-icon">PG</div>
+                        <h3>PostgreSQL</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Retail Sales Deep Dive</h4>
+                        <p>Cohort analysis, RFM segmentation, and year-over-year revenue trends on 500k+ order records using window functions and CTEs.</p>
+                        <div class="project-tags">
+                            <span class="tag">Window Functions</span>
+                            <span class="tag">CTEs</span>
+                            <span class="tag">Cohort Analysis</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header sql-bq">
+                        <div class="bi-icon">BQ</div>
+                        <h3>BigQuery</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Healthcare Claims Analysis</h4>
+                        <p>Data quality pipeline, claims validation, and payer-provider KPI extraction using complex multi-table joins on 1M+ records.</p>
+                        <div class="project-tags">
+                            <span class="tag">Data Validation</span>
+                            <span class="tag">Complex Joins</span>
+                            <span class="tag">BigQuery</span>
+                            <span class="tag">KPIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header sql-ss">
+                        <div class="bi-icon">SS</div>
+                        <h3>SQL Server</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Supply Chain Metrics</h4>
+                        <p>Inventory turnover, lead times, and supplier performance scoring using aggregated query logic across 10+ normalized tables.</p>
+                        <div class="project-tags">
+                            <span class="tag">Aggregations</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="python-analysis" class="python-portfolio">
+        <div class="container">
+            <h2 class="section-title">Python &amp; Analysis</h2>
+            <div class="bi-grid">
+
+                <div class="bi-card">
+                    <div class="bi-card-header py-pandas">
+                        <div class="bi-icon">Py</div>
+                        <h3>Pandas</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Customer Behavior EDA</h4>
+                        <p>Exploratory analysis of e-commerce customer segments including churn signals, purchase patterns, and feature correlation heatmaps.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">EDA</span>
+                            <span class="tag">Seaborn</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header py-stats">
+                        <div class="bi-icon">Jn</div>
+                        <h3>Forecasting</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Time Series Forecasting</h4>
+                        <p>Demand forecasting with seasonal decomposition, trend analysis, and confidence interval visualization using Prophet and statsmodels.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Prophet</span>
+                            <span class="tag">Time Series</span>
+                            <span class="tag">statsmodels</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header py-pipe">
+                        <div class="bi-icon">PL</div>
+                        <h3>Pipelines</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Automated ETL Pipeline</h4>
+                        <p>End-to-end pipeline extracting from REST APIs, transforming with Pandas, and loading to PostgreSQL with error handling and logging.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">ETL</span>
+                            <span class="tag">REST API</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="excel-reporting" class="excel-portfolio">
+        <div class="container">
+            <h2 class="section-title">Excel &amp; Reporting</h2>
+            <div class="bi-grid">
+
+                <div class="bi-card">
+                    <div class="bi-card-header xl-dash">
+                        <div class="bi-icon">XL</div>
+                        <h3>Excel</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Executive KPI Dashboard</h4>
+                        <p>Dynamic multi-tab Excel dashboard with slicers, pivot tables, and Power Query for automated monthly reporting refresh.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">Pivot Tables</span>
+                            <span class="tag">Power Query</span>
+                            <span class="tag">KPIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header xl-pq">
+                        <div class="bi-icon">PQ</div>
+                        <h3>Power Query</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Financial Scenario Model</h4>
+                        <p>Three-scenario financial model with sensitivity tables, DCF analysis, and automated chart updates designed for executive presentation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">Financial Modeling</span>
+                            <span class="tag">Scenario Analysis</span>
+                            <span class="tag">DCF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bi-card">
+                    <div class="bi-card-header xl-vba">
+                        <div class="bi-icon">VB</div>
+                        <h3>VBA / Macros</h3>
+                    </div>
+                    <div class="bi-card-body">
+                        <div class="bi-preview">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </div>
+                        <h4>Sales Performance Tracker</h4>
+                        <p>Automated weekly sales reporting with conditional formatting, sparklines, and manager-level drill-down built for recurring distribution.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">VBA</span>
+                            <span class="tag">Conditional Formatting</span>
+                            <span class="tag">Reporting</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
