@@ -75,6 +75,8 @@ them with a `~` rather than passing them off as measured times.
 ## Testing status
 
 - Core geo/scoring/hours logic: **15/15 unit tests passing**.
+- Full UI in headless mobile Chromium against mocked OSM responses:
+  **27/27 passing**, no JS errors.
 - Live API calls: **not yet verified end-to-end** — the dev sandbox blocks
   outbound requests to these hosts. First real browser run is the acceptance test.
 
@@ -111,3 +113,5 @@ icon.svg              app icon
 ```
 
 No build step, no dependencies beyond Leaflet from a CDN.
+
+Tests live in `test/` — see `test/README.md`. 15 unit + 27 browser assertions.

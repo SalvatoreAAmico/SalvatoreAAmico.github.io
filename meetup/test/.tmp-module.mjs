@@ -637,4 +637,5 @@ function boot() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', boot);
+
+export {haversine,centroid,isOpenNow,priceLevel,scoreVenues,fmtMin};
